@@ -39,5 +39,6 @@ This is the prepared submission copy. Use the [GenLayer Portal](https://portal.g
 - **Acceptance evidence:** [grantmark_acceptance.json](../deployments/grantmark_acceptance.json)
 - **Deployment evidence:** [grantmark_studionet.json](../deployments/grantmark_studionet.json)
 - **CI checks:** [GitHub Actions](https://github.com/Demigodd00/grantmark-studionet/actions)
+- **Read-only release verifier:** [check_grantmark_release.py](../scripts/check_grantmark_release.py)
 
 The repository is dedicated to GRANTMARK. It contains the contract, web app, tests, deployment scripts and records, and reviewer material. It does not include other apps or wallet secrets.

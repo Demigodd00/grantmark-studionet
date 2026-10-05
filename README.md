@@ -13,6 +13,8 @@ GRANTMARK is a standalone GenLayer StudioNet app for evidence-backed grant miles
 - [`docs/architecture.md`](docs/architecture.md): rules, boundaries, and limitations.
 - [`deployments`](deployments): verifiable deployment and acceptance records.
 - [`scripts/grantmark_acceptance.py`](scripts/grantmark_acceptance.py): resume-safe synthetic StudioNet funding, grant, and evidence run. Test wallet keys stay outside this repository.
+- [`scripts/check_grantmark_release.py`](scripts/check_grantmark_release.py): read-only verifier for deployed source, finalized sample transactions, locked state, and public evidence.
+- [`scripts/finish_grantmark_acceptance.py`](scripts/finish_grantmark_acceptance.py): after the real review deadline, request adjudication, withdraw the credited test GEN, and record the native transfer. It never overrides time.
 
 ## Grant lifecycle
 
@@ -44,3 +46,5 @@ pnpm audit --prod --audit-level high
 Create `apps/grantmark-web/.env.local` with `NEXT_PUBLIC_GRANTMARK_ADDRESS=<deployed address>` to enable live reads and writes. `python scripts/deploy_grantmark.py` runs preflight without broadcasting; `--deploy --ephemeral-studionet-deployer` deploys with a disposable test-network signer and writes the address to `.env.local`. Use `--resume-transaction <hash>` after an interrupted deployment confirmation, without broadcasting a second time.
 
 The repository is dedicated to GRANTMARK and contains no other GenLayer applications.
+
+Run `python scripts/check_grantmark_release.py` to check the current public release without any wallet key.
