@@ -56,7 +56,7 @@ def main() -> None:
     write_step(record, client, contract, "withdraw", "withdraw_credit", [], account)
     if int(read(client, contract, "get_credit", [account.address])) != 0:
         raise RuntimeError("winner credit did not clear after withdrawal")
-    parent = rpc("eth_getTransactionByHash", [record["transactions"]["withdraw"]["hash"])
+    parent = rpc("eth_getTransactionByHash", [record["transactions"]["withdraw"]["hash"]])
     children = parent.get("triggered_transactions", [])
     if len(children) != 1:
         raise RuntimeError("withdrawal did not create exactly one native transfer")
