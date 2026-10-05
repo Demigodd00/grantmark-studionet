@@ -1,0 +1,4 @@
+GRANTMARK SYNTHETIC ACCEPTANCE FIXTURE — not an independent audit.
+Independent-audit scenario: only 90 kits reached distinct recipient IDs.
+Ten records have duplicate IDs.
+This project-controlled document exists only to exercise the StudioNet adjudication path.

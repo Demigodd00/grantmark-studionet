@@ -1,0 +1,4 @@
+GRANTMARK SYNTHETIC ACCEPTANCE FIXTURE — not a real grant distribution.
+Milestone delivery register: 100 kits delivered to 100 distinct recipient IDs.
+Delivery date: 2026-10-01.
+This project-controlled document exists only to exercise the StudioNet adjudication path.

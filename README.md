@@ -1,0 +1,43 @@
+# GRANTMARK
+
+GRANTMARK is a standalone GenLayer StudioNet app for evidence-backed grant milestones. A sponsor locks one test-GEN tranche against a fixed rubric and deadline. The beneficiary submits public evidence. After review, GenLayer validators independently fetch the declared sources, decide `MET`, `NOT_MET`, or `INCONCLUSIVE`, and the contract credits the beneficiary or sponsor accordingly. Anyone can trigger resolution. There is no administrator verdict override.
+
+## What is in this repository
+
+- [`contracts/grantmark.py`](contracts/grantmark.py): pinned-runner GenLayer intelligent contract, on-chain evidence record, consensus decision, and pull-payment accounting.
+- [`apps/grantmark-web`](apps/grantmark-web): wallet-enabled Next.js app reading finalized StudioNet state directly.
+- [`tests/direct/test_grantmark.py`](tests/direct/test_grantmark.py): escrow, deadline, authorization, decision, and independent-source checks.
+- [`scripts/deploy_grantmark.py`](scripts/deploy_grantmark.py): deployment preflight, StudioNet broadcast, source verification, and release manifest.
+- [`docs/architecture.md`](docs/architecture.md): rules, boundaries, and limitations.
+- [`deployments`](deployments): verifiable deployment and acceptance records.
+
+## Grant lifecycle
+
+1. The sponsor deposits test GEN into recoverable contract credit, then creates a grant with one beneficiary, tranche, milestone, measurable rubric, and two windows.
+2. The beneficiary submits a report and one or two public HTTPS sources before the submission deadline. If no submission arrives, anyone can refund the tranche to the sponsor.
+3. The sponsor may add one objection and one public counter-source before the review deadline. The sponsor cannot edit the rubric or decide the result.
+4. Once review closes, anyone invokes `resolve`. Validators independently fetch the bounded sources. `MET` credits the beneficiary; `NOT_MET` and `INCONCLUSIVE` credit the sponsor. If adjudication has not completed within seven days, anyone can invoke the timeout refund.
+5. Recipients withdraw their contract credit themselves.
+
+The web sources may change before adjudication. The contract stores the pages reviewed, digests, and citations. The current app supports one milestone per grant and public evidence only. It uses StudioNet test GEN, not funds of real-world value.
+
+## Develop and verify
+
+Requires Python 3.12, Node 22+, pnpm 11, and the versions in `requirements-deploy.txt`.
+
+```sh
+python -m pip install -r requirements-deploy.txt
+python scripts/prepare_gltest_runner.py
+genvm-lint check contracts/grantmark.py
+pytest -q tests/direct/test_grantmark.py
+cd apps/grantmark-web
+pnpm install --frozen-lockfile
+pnpm test
+pnpm typecheck
+pnpm build
+pnpm audit --prod --audit-level high
+```
+
+Create `apps/grantmark-web/.env.local` with `NEXT_PUBLIC_GRANTMARK_ADDRESS=<deployed address>` to enable live reads and writes. `python scripts/deploy_grantmark.py` runs preflight without broadcasting; `--deploy --ephemeral-studionet-deployer` deploys with a disposable test-network signer and writes the address to `.env.local`. Use `--resume-transaction <hash>` after an interrupted deployment confirmation, without broadcasting a second time.
+
+The repository is dedicated to GRANTMARK and contains no other GenLayer applications.

@@ -1,0 +1,29 @@
+{
+  "contract": "Grantmark",
+  "version": "0.1.0",
+  "network": "studionet",
+  "address": "0x9789420955ca6bceCdc408068Be987471DF77812",
+  "transaction_hash": "0x6acb2b2d4cc3dd31e9f046ff40c22d478da607d78f4742a85d0ad9533b24692c",
+  "deployer": "0x662364A4298787674a3038E823d92Bcc9C2AE7A3",
+  "deployer_role": "no_admin_controls_or_protocol_fees",
+  "signer_mode": "disposable_studionet_deployment_only",
+  "constructor_args": [],
+  "source_sha256": "fb5c956da8d9a7266f3c8495d439197be61b49e12431044b81541786c5ce7751",
+  "runner_dependency": "# { \"Depends\": \"py-genlayer:1jb45aa8ynh2a9c9xn3b7qqh8sm5q93hwfp7jqmwsfhh8jpz09h6\" }",
+  "receipt_status": "FINALIZED",
+  "execution_result": "SUCCESS",
+  "verified_source_and_config": true,
+  "preflight_passed": true,
+  "config": {
+    "adjudication_timeout_secs": "604800",
+    "funding": "DEPOSIT_THEN_SPEND_WITH_RECOVERABLE_CREDIT",
+    "max_review_secs": "1209600",
+    "max_submission_secs": "7776000",
+    "max_tranche_atto": "1000000000000000000000",
+    "min_tranche_atto": "4000000000000000",
+    "network": "STUDIONET",
+    "settlement": "MET_TO_BENEFICIARY; ALL_OTHER_OUTCOMES_TO_SPONSOR",
+    "version": "0.1.0"
+  },
+  "verified_at": "2026-10-05T07:12:32.504931+00:00"
+}
