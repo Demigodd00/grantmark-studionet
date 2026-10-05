@@ -17,7 +17,7 @@ jobs:
       - run: python scripts/prepare_gltest_runner.py
       - run: genvm-lint check contracts/grantmark.py
       - run: pytest -q tests/direct/test_grantmark.py
-      - run: python -m compileall -q scripts/deploy_grantmark.py
+      - run: python -m compileall -q scripts/deploy_grantmark.py scripts/grantmark_acceptance.py
 
   frontend:
     runs-on: ubuntu-latest

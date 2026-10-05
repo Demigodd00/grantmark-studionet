@@ -2,6 +2,8 @@
 
 GRANTMARK is a standalone GenLayer StudioNet app for evidence-backed grant milestones. A sponsor locks one test-GEN tranche against a fixed rubric and deadline. The beneficiary submits public evidence. After review, GenLayer validators independently fetch the declared sources, decide `MET`, `NOT_MET`, or `INCONCLUSIVE`, and the contract credits the beneficiary or sponsor accordingly. Anyone can trigger resolution. There is no administrator verdict override.
 
+**Live app:** [grantmark-web.vercel.app](https://grantmark-web.vercel.app) · **Sample grant:** [grm-1](https://grantmark-web.vercel.app/?grant=grm-1) · **StudioNet contract:** [0x978942…77812](https://explorer-studio.genlayer.com/address/0x9789420955ca6bceCdc408068Be987471DF77812) · **Reviewer guide:** [GRANTMARK_REVIEW.md](docs/GRANTMARK_REVIEW.md)
+
 ## What is in this repository
 
 - [`contracts/grantmark.py`](contracts/grantmark.py): pinned-runner GenLayer intelligent contract, on-chain evidence record, consensus decision, and pull-payment accounting.
@@ -10,6 +12,7 @@ GRANTMARK is a standalone GenLayer StudioNet app for evidence-backed grant miles
 - [`scripts/deploy_grantmark.py`](scripts/deploy_grantmark.py): deployment preflight, StudioNet broadcast, source verification, and release manifest.
 - [`docs/architecture.md`](docs/architecture.md): rules, boundaries, and limitations.
 - [`deployments`](deployments): verifiable deployment and acceptance records.
+- [`scripts/grantmark_acceptance.py`](scripts/grantmark_acceptance.py): resume-safe synthetic StudioNet funding, grant, and evidence run. Test wallet keys stay outside this repository.
 
 ## Grant lifecycle
 

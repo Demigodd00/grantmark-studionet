@@ -57,6 +57,11 @@ export default function GrantmarkApp() {
   const [panel, setPanel] = useState<"explore" | "create">("explore");
   const [pending, setPending] = useState<string | null>(null);
 
+  useEffect(() => {
+    const id = new URLSearchParams(window.location.search).get("grant");
+    if (id && /^grm-\d+$/.test(id)) setSelectedId(id);
+  }, []);
+
   const refresh = useCallback(async (id = selectedId, wallet = session) => {
     if (!CONTRACT_READY) { setLoading(false); return; }
     const [page, nextStats, detail, nextCredit] = await Promise.all([
@@ -114,6 +119,7 @@ export default function GrantmarkApp() {
 
   function openGrant(id: string) {
     setSelectedId(id); setSelected(null); setPanel("explore");
+    window.history.replaceState(null, "", `?grant=${encodeURIComponent(id)}`);
     getGrant(id).then(setSelected).catch((error) => setNotice(error instanceof Error ? error.message : "Could not load grant."));
   }
 

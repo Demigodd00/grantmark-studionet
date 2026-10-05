@@ -1,0 +1,64 @@
+{
+  "network": "studionet",
+  "contract": "0x9789420955ca6bceCdc408068Be987471DF77812",
+  "frontend": "https://grantmark-web.vercel.app",
+  "wallets": {
+    "sponsor": "0x992F66909d0d843FAF079c82E89F4078e3A86d14",
+    "beneficiary": "0x883e8977175B6933bd785B424FB74d60C890BDc0"
+  },
+  "transactions": {
+    "deposit": {
+      "method": "deposit",
+      "args": [],
+      "sender": "0x992F66909d0d843FAF079c82E89F4078e3A86d14",
+      "value_atto": "4000000000000000",
+      "state": "checked",
+      "hash": "0x46319501f063e8098c7fc413fe8ad9a479eb7f2c3d16da8c6a6828cca60bd366",
+      "final_status": "FINALIZED"
+    },
+    "create": {
+      "method": "create_grant",
+      "args": [
+        "GRANTMARK synthetic kit delivery 97894209",
+        "Deliver 100 school kits to 100 distinct recipient IDs and publish a dated delivery register.",
+        "MET only if the dated public register establishes 100 delivered kits and 100 distinct recipient IDs; NOT_MET if a public audit establishes fewer; otherwise INCONCLUSIVE.",
+        "0x883e8977175B6933bd785B424FB74d60C890BDc0",
+        3600,
+        3600,
+        4000000000000000
+      ],
+      "sender": "0x992F66909d0d843FAF079c82E89F4078e3A86d14",
+      "value_atto": "0",
+      "state": "checked",
+      "hash": "0x145d31f3aec5646b75b6762fc620b9384d4aa92ec5a5ac2b20471da16c26bfb3",
+      "final_status": "FINALIZED"
+    },
+    "submit": {
+      "method": "submit_evidence",
+      "args": [
+        "grm-1",
+        "The synthetic dated register records 100 delivered school kits and 100 distinct recipient IDs.",
+        "[\"https://grantmark-web.vercel.app/evidence/demo-register.txt\"]"
+      ],
+      "sender": "0x883e8977175B6933bd785B424FB74d60C890BDc0",
+      "value_atto": "0",
+      "state": "checked",
+      "hash": "0xe717374a0bd7678613aeb1087b8d24be329bdb7645e4c9b80245ab53afeea72e",
+      "final_status": "FINALIZED"
+    }
+  },
+  "checks": {
+    "public_site_and_fixture": true,
+    "funded_sponsor": true,
+    "funded_beneficiary": true,
+    "deposit_credit_confirmed": true,
+    "grant_created": true,
+    "evidence_submitted_and_tranche_locked": true
+  },
+  "fixture_disclosure": "The public delivery register is synthetic and controlled by GRANTMARK. It is not proof of a real grant distribution.",
+  "updated_at": "2026-10-05T07:31:43.659648+00:00",
+  "grant_id": "grm-1",
+  "status": "SUBMITTED_AWAITING_REVIEW_DEADLINE",
+  "review_deadline": 1791192617,
+  "reviewer_note": "This acceptance run proves finalized funding, grant creation, submission, and locked tranche. Live adjudication and withdrawal remain unverified until the review deadline."
+}
