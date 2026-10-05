@@ -39,6 +39,8 @@ def main() -> None:
         grant = read(client, contract, "get_grant", [grant_id])
     if grant["status"] != "SETTLED" or grant["outcome"] not in ("MET", "NOT_MET", "INCONCLUSIVE"):
         raise RuntimeError("Sample did not settle through GenLayer adjudication")
+    if "resolve" not in record["transactions"]:
+        raise RuntimeError("Grant was resolved outside the acceptance run; record and verify that transaction before withdrawal")
     winner = "beneficiary" if grant["outcome"] == "MET" else "sponsor"
     account = wallets[winner]
     if grant["settlement_recipient"].lower() != account.address.lower():

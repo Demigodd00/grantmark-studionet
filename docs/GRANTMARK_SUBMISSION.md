@@ -1,6 +1,6 @@
 # GRANTMARK — Project Explorer submission draft
 
-This is the prepared submission copy. Use the [GenLayer Portal](https://portal.genlayer.foundation/) from the account that owns the project. The date should match the actual day of submission. Before submitting, verify that the live sample has a finalized GenLayer decision and withdrawal proof, or explicitly present it as an in-progress review. The current [acceptance journal](../deployments/grantmark_acceptance.json) is the source of truth.
+This is the prepared submission copy. Use the [GenLayer Portal](https://portal.genlayer.foundation/) from the account that owns the project. The date should match the actual day of submission. Before submitting, verify that the live sample has a finalized GenLayer decision and withdrawal proof, or explicitly present it as an in-progress review. The current [acceptance journal](https://github.com/Demigodd00/grantmark-studionet/blob/main/deployments/grantmark_acceptance.json) is the source of truth.
 
 ## Project identity
 
@@ -8,7 +8,7 @@ This is the prepared submission copy. Use the [GenLayer Portal](https://portal.g
 **Primary tag:** AI & Agents, if offered  
 **Additional tags:** Grants, Source Verification, or Verifiable Inference, choosing from the portal's available taxonomy  
 **Contribution date:** Enter the actual submission date  
-**Logo:** [GRANTMARK logo](grantmark-logo.png) (1024 × 1024 PNG, under 2 MB)
+**Logo:** [GRANTMARK logo](https://github.com/Demigodd00/grantmark-studionet/blob/main/docs/grantmark-logo.png) (1024 × 1024 PNG, under 2 MB)
 
 ## One-liner
 
@@ -22,8 +22,8 @@ This is the prepared submission copy. Use the [GenLayer Portal](https://portal.g
 
 1. Open the [live GRANTMARK docket](https://grantmark-web.vercel.app) without a wallet.
 2. Open [the sample grant](https://grantmark-web.vercel.app/?grant=grm-1) and inspect its locked rubric, deadline, terms digest, beneficiary report, and public evidence link. The evidence is explicitly synthetic.
-3. Follow the [deployed contract](https://explorer-studio.genlayer.com/address/0x9789420955ca6bceCdc408068Be987471DF77812), [contract source](../contracts/grantmark.py), [deployment manifest](../deployments/grantmark_studionet.json), and [acceptance journal](../deployments/grantmark_acceptance.json). The journal links finalized funding, creation and submission transactions.
-4. Read the [reviewer guide](GRANTMARK_REVIEW.md) for settlement rules, test coverage, and the exact status of live adjudication and withdrawal.
+3. Follow the [deployed contract](https://explorer-studio.genlayer.com/address/0x9789420955ca6bceCdc408068Be987471DF77812), [contract source](https://github.com/Demigodd00/grantmark-studionet/blob/main/contracts/grantmark.py), [deployment manifest](https://github.com/Demigodd00/grantmark-studionet/blob/main/deployments/grantmark_studionet.json), and [acceptance journal](https://github.com/Demigodd00/grantmark-studionet/blob/main/deployments/grantmark_acceptance.json). The journal links finalized funding, creation and submission transactions.
+4. Read the [reviewer guide](https://github.com/Demigodd00/grantmark-studionet/blob/main/docs/GRANTMARK_REVIEW.md) for settlement rules, test coverage, and the exact status of live adjudication and withdrawal.
 
 ## Expected verification outcome
 
@@ -35,10 +35,10 @@ This is the prepared submission copy. Use the [GenLayer Portal](https://portal.g
 - **GitHub:** [GRANTMARK standalone repository](https://github.com/Demigodd00/grantmark-studionet)
 - **Contract:** [StudioNet explorer](https://explorer-studio.genlayer.com/address/0x9789420955ca6bceCdc408068Be987471DF77812)
 - **Sample:** [grm-1](https://grantmark-web.vercel.app/?grant=grm-1)
-- **Reviewer guide:** [GRANTMARK_REVIEW.md](GRANTMARK_REVIEW.md)
-- **Acceptance evidence:** [grantmark_acceptance.json](../deployments/grantmark_acceptance.json)
-- **Deployment evidence:** [grantmark_studionet.json](../deployments/grantmark_studionet.json)
+- **Reviewer guide:** [GRANTMARK_REVIEW.md](https://github.com/Demigodd00/grantmark-studionet/blob/main/docs/GRANTMARK_REVIEW.md)
+- **Acceptance evidence:** [grantmark_acceptance.json](https://github.com/Demigodd00/grantmark-studionet/blob/main/deployments/grantmark_acceptance.json)
+- **Deployment evidence:** [grantmark_studionet.json](https://github.com/Demigodd00/grantmark-studionet/blob/main/deployments/grantmark_studionet.json)
 - **CI checks:** [GitHub Actions](https://github.com/Demigodd00/grantmark-studionet/actions)
-- **Read-only release verifier:** [check_grantmark_release.py](../scripts/check_grantmark_release.py)
+- **Read-only release verifier:** [check_grantmark_release.py](https://github.com/Demigodd00/grantmark-studionet/blob/main/scripts/check_grantmark_release.py)
 
 The repository is dedicated to GRANTMARK. It contains the contract, web app, tests, deployment scripts and records, and reviewer material. It does not include other apps or wallet secrets.
