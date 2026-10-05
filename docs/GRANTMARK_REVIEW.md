@@ -2,6 +2,8 @@
 
 GRANTMARK is a standalone GenLayer StudioNet grant-milestone app. It uses no central verdict server. [The public app](https://grantmark-web.vercel.app) reads finalized contract state from StudioNet and sends wallet writes to the [deployed contract](https://explorer-studio.genlayer.com/address/0x9789420955ca6bceCdc408068Be987471DF77812). The [project logo](grantmark-logo.png) and [submission draft](GRANTMARK_SUBMISSION.md) are also included.
 
+Connected wallets can see recent deposits discovered from StudioNet wallet activity, without supplying a transaction hash. The app distinguishes a finalized successful credit from a pending, failed, or unknown transaction and retains pending write hashes across reloads.
+
 ## Inspect the live sample
 
 1. Open [the synthetic kit-delivery grant](https://grantmark-web.vercel.app/?grant=grm-1). No wallet is required to inspect it. Review the locked milestone, measurable rubric, tranche, two deadlines, beneficiary report, public evidence link, and terms digest.

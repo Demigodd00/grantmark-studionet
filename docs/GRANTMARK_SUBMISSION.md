@@ -16,7 +16,7 @@ This is the prepared submission copy. Use the [GenLayer Portal](https://portal.g
 
 ## Description
 
-> GRANTMARK is a StudioNet app for evidence-backed grant milestones. A sponsor locks a test-GEN tranche, named beneficiary, measurable rubric and deadlines in an Intelligent Contract. The beneficiary submits a report and public HTTPS evidence; the sponsor may add one objection and counter-source. Once review closes, GenLayer validators independently fetch the bounded sources and decide MET, NOT_MET or INCONCLUSIVE. The contract credits the beneficiary only for MET and refunds the sponsor otherwise. Missed submissions and adjudication timeouts also have explicit refund paths. Parties withdraw their own credits. The frontend reads finalized contract state directly, with no central verdict backend or administrator override. The public sample uses synthetic, project-controlled evidence.
+> GRANTMARK is a StudioNet app for evidence-backed grant milestones. A sponsor locks a test-GEN tranche, named beneficiary, measurable rubric and deadlines in an Intelligent Contract. The beneficiary submits a report and public HTTPS evidence; the sponsor may add one objection and counter-source. Once review closes, GenLayer validators independently fetch the bounded sources and decide MET, NOT_MET or INCONCLUSIVE. The contract credits the beneficiary only for MET and refunds the sponsor otherwise. Missed submissions and adjudication timeouts also have explicit refund paths. Parties withdraw their own credits. The frontend reads finalized contract state and recovers deposit status by wallet, without a supplied hash. There is no central verdict backend or administrator override. The public sample uses synthetic, project-controlled evidence.
 
 ## How to review
 

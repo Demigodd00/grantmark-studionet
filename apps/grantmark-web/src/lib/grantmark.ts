@@ -77,6 +77,14 @@ export interface ProtocolStats {
   total_settled_atto: string;
 }
 
+export interface WalletDeposit {
+  hash: string;
+  amountAtto: string | null;
+  status: string;
+  outcome: "credited" | "failed" | "pending" | "unknown";
+  createdAt: string;
+}
+
 export const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_GRANTMARK_ADDRESS ?? "";
 export const CONTRACT_READY = /^0x[0-9a-fA-F]{40}$/.test(CONTRACT_ADDRESS) && !/^0x0{40}$/i.test(CONTRACT_ADDRESS);
 export const EXPLORER_URL = CONTRACT_READY
@@ -179,6 +187,55 @@ export async function getCredit(address: string): Promise<string> {
     transactionHashVariant: TransactionHashVariant.LATEST_FINAL,
     functionName: "get_credit", args: [address],
   }) as string;
+}
+
+export function depositHistoryCandidates(history: unknown, address: string, target: string): { hash: string; createdAt: string }[] {
+  if (!Array.isArray(history)) throw new Error("StudioNet returned invalid wallet activity.");
+  const sender = address.toLowerCase();
+  const contract = target.toLowerCase();
+  const seen = new Set<string>();
+  return history.filter((entry) => {
+    const row = object(entry);
+    const hash = row.hash;
+    const value = row.value;
+    const positive = typeof value === "bigint" ? value > 0n :
+      typeof value === "number" ? Number.isFinite(value) && value > 0 :
+      typeof value === "string" && /^\d+$/.test(value) && BigInt(value) > 0n;
+    if (typeof hash !== "string" || !/^0x[0-9a-fA-F]{64}$/.test(hash) ||
+      String(row.from_address ?? "").toLowerCase() !== sender ||
+      String(row.to_address ?? "").toLowerCase() !== contract || !positive || seen.has(hash.toLowerCase())) return false;
+    seen.add(hash.toLowerCase());
+    return true;
+  }).map((entry) => {
+    const row = object(entry);
+    return { hash: String(row.hash), createdAt: typeof row.created_at === "string" ? row.created_at : "" };
+  }).sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt)).slice(0, 20);
+}
+
+export async function getWalletDeposits(address: string): Promise<WalletDeposit[]> {
+  const history = await readClient.request({ method: "sim_getTransactionsForAddress", params: [address as never] });
+  const candidates = depositHistoryCandidates(history, address, contractAddress());
+  return Promise.all(candidates.map(async ({ hash, createdAt }): Promise<WalletDeposit> => {
+    try {
+      const receipt = await readClient.getTransaction({ hash: hash as never });
+      const tx = object(receipt);
+      if (String(tx.sender ?? tx.from_address ?? "").toLowerCase() !== address.toLowerCase() ||
+        String(tx.to_address ?? tx.to ?? "").toLowerCase() !== contractAddress().toLowerCase()) {
+        throw new Error("Transaction did not match this wallet and contract.");
+      }
+      const value = tx.value;
+      const amountAtto = typeof value === "bigint" || typeof value === "string" ? String(value) : null;
+      const status = transactionStatus(receipt);
+      if (status !== TransactionStatus.FINALIZED) {
+        const outcome = ["CANCELED", "CANCELLED", "UNDETERMINED"].includes(status) ? "failed" : status ? "pending" : "unknown";
+        return { hash, amountAtto, status, outcome, createdAt };
+      }
+      try { assertSuccessfulExecution(receipt); return { hash, amountAtto, status, outcome: "credited", createdAt }; }
+      catch { return { hash, amountAtto, status, outcome: "failed", createdAt }; }
+    } catch {
+      return { hash, amountAtto: null, status: "UNKNOWN", outcome: "unknown", createdAt };
+    }
+  }));
 }
 
 interface PendingTransaction { hash: string; method: string; submittedAt: number }
