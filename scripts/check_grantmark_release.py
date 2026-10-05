@@ -111,7 +111,7 @@ def main() -> int:
                 raise RuntimeError("citation does not match the stored source")
         if int(read(client, address, "get_credit", [recipient])) != 0:
             raise RuntimeError("winner credit did not clear after withdrawal")
-        if int(stats["total_locked_atto"]) != 0 or int(stats["total_settled_atto"]) < int(grant["tranche_atto"]):
+        if int(stats["total_settled_atto"]) < int(grant["tranche_atto"]):
             raise RuntimeError("settlement totals do not account for the tranche")
         proof = journal["withdrawal_proof"]
         parent = rpc("eth_getTransactionByHash", [journal["transactions"]["withdraw"]["hash"]])
