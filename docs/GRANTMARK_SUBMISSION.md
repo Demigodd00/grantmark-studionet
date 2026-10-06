@@ -1,6 +1,6 @@
 # GRANTMARK — Project Explorer submission draft
 
-This is the prepared submission copy. Use the [GenLayer Portal](https://portal.genlayer.foundation/) from the account that owns the project. The date should match the actual day of submission. Before submitting, verify that the live sample has a finalized GenLayer decision and withdrawal proof, or explicitly present it as an in-progress review. The current [acceptance journal](https://github.com/Demigodd00/grantmark-studionet/blob/main/deployments/grantmark_acceptance.json) is the source of truth.
+This is the prepared submission copy. Use the [GenLayer Portal](https://portal.genlayer.foundation/) from the account that owns the project, and enter the actual day of submission. The live sample now has a finalized GenLayer decision and exact withdrawal proof in the [acceptance journal](https://github.com/Demigodd00/grantmark-studionet/blob/main/deployments/grantmark_acceptance.json).
 
 ## Project identity
 
@@ -21,13 +21,13 @@ This is the prepared submission copy. Use the [GenLayer Portal](https://portal.g
 ## How to review
 
 1. Open the [live GRANTMARK docket](https://grantmark-web.vercel.app) without a wallet.
-2. Open [the sample grant](https://grantmark-web.vercel.app/?grant=grm-1) and inspect its locked rubric, deadline, terms digest, beneficiary report, and public evidence link. The evidence is explicitly synthetic.
-3. Follow the [deployed contract](https://explorer-studio.genlayer.com/address/0x9789420955ca6bceCdc408068Be987471DF77812), [contract source](https://github.com/Demigodd00/grantmark-studionet/blob/main/contracts/grantmark.py), [deployment manifest](https://github.com/Demigodd00/grantmark-studionet/blob/main/deployments/grantmark_studionet.json), and [acceptance journal](https://github.com/Demigodd00/grantmark-studionet/blob/main/deployments/grantmark_acceptance.json). The journal links finalized funding, creation and submission transactions.
-4. Read the [reviewer guide](https://github.com/Demigodd00/grantmark-studionet/blob/main/docs/GRANTMARK_REVIEW.md) for settlement rules, test coverage, and the exact status of live adjudication and withdrawal.
+2. Open [the sample grant](https://grantmark-web.vercel.app/?grant=grm-1) and inspect its locked rubric, deadline, terms digest, beneficiary report, synthetic evidence, `MET` decision, and citations.
+3. Follow the [deployed contract](https://explorer-studio.genlayer.com/address/0x9789420955ca6bceCdc408068Be987471DF77812), [contract source](https://github.com/Demigodd00/grantmark-studionet/blob/main/contracts/grantmark.py), [deployment manifest](https://github.com/Demigodd00/grantmark-studionet/blob/main/deployments/grantmark_studionet.json), and [acceptance journal](https://github.com/Demigodd00/grantmark-studionet/blob/main/deployments/grantmark_acceptance.json). The journal links finalized funding, creation, submission, adjudication, and withdrawal transactions, plus the exact native child transfer.
+4. Read the [reviewer guide](https://github.com/Demigodd00/grantmark-studionet/blob/main/docs/GRANTMARK_REVIEW.md) for settlement rules, test coverage, and the distinction between this synthetic demonstration and a real delivery.
 
 ## Expected verification outcome
 
-> The app shows grm-1 with a locked 0.004 test-GEN tranche, rubric, beneficiary evidence, and review deadline. The deployment source and configuration are verified, and the acceptance journal proves finalized deposit, creation and submission. Direct tests verify MET, NOT_MET, INCONCLUSIVE, deadline refunds, withdrawal credit and validator rejection of edited evidence. Live verdict and withdrawal proof must be added after the review deadline; do not claim them before they exist.
+> The app shows grm-1 as `MET` after the real review deadline. The finalized GenLayer transaction credited its beneficiary with 0.004 StudioNet test GEN; the beneficiary withdrew the exact amount through one finalized native child transfer. The acceptance journal and read-only verifier prove the transaction chain, recipient, amount, cited evidence snapshot, and cleared credit. Direct tests cover the other outcomes and refund paths. The public evidence is a disclosed, project-controlled synthetic fixture, not proof of a real grant distribution.
 
 ## Project links and evidence
 
@@ -35,6 +35,9 @@ This is the prepared submission copy. Use the [GenLayer Portal](https://portal.g
 - **GitHub:** [GRANTMARK standalone repository](https://github.com/Demigodd00/grantmark-studionet)
 - **Contract:** [StudioNet explorer](https://explorer-studio.genlayer.com/address/0x9789420955ca6bceCdc408068Be987471DF77812)
 - **Sample:** [grm-1](https://grantmark-web.vercel.app/?grant=grm-1)
+- **Adjudication:** [finalized GenLayer decision](https://explorer-studio.genlayer.com/tx/0x63ca3839ff8ddb2cb63156cc7f24342bee46dea6e6ed74dac74416fe8dbac57f)
+- **Withdrawal:** [finalized contract write](https://explorer-studio.genlayer.com/tx/0xe55875af6dce4fc5947e86a1be69b0440bcaef00bf213eb7526b5977d60d71ea)
+- **Payout:** [native child transfer to beneficiary](https://explorer-studio.genlayer.com/tx/0x7a13225c32a2da7fe5e18f5822031ba2ae83f85cfc7c061844cf32723db130d6)
 - **Reviewer guide:** [GRANTMARK_REVIEW.md](https://github.com/Demigodd00/grantmark-studionet/blob/main/docs/GRANTMARK_REVIEW.md)
 - **Acceptance evidence:** [grantmark_acceptance.json](https://github.com/Demigodd00/grantmark-studionet/blob/main/deployments/grantmark_acceptance.json)
 - **Deployment evidence:** [grantmark_studionet.json](https://github.com/Demigodd00/grantmark-studionet/blob/main/deployments/grantmark_studionet.json)

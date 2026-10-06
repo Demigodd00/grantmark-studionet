@@ -45,6 +45,26 @@
       "state": "checked",
       "hash": "0xe717374a0bd7678613aeb1087b8d24be329bdb7645e4c9b80245ab53afeea72e",
       "final_status": "FINALIZED"
+    },
+    "resolve": {
+      "method": "resolve",
+      "args": [
+        "grm-1"
+      ],
+      "sender": "0x992F66909d0d843FAF079c82E89F4078e3A86d14",
+      "value_atto": "0",
+      "state": "checked",
+      "hash": "0x63ca3839ff8ddb2cb63156cc7f24342bee46dea6e6ed74dac74416fe8dbac57f",
+      "final_status": "FINALIZED"
+    },
+    "withdraw": {
+      "method": "withdraw_credit",
+      "args": [],
+      "sender": "0x883e8977175B6933bd785B424FB74d60C890BDc0",
+      "value_atto": "0",
+      "state": "checked",
+      "hash": "0xe55875af6dce4fc5947e86a1be69b0440bcaef00bf213eb7526b5977d60d71ea",
+      "final_status": "FINALIZED"
     }
   },
   "checks": {
@@ -53,12 +73,70 @@
     "funded_beneficiary": true,
     "deposit_credit_confirmed": true,
     "grant_created": true,
-    "evidence_submitted_and_tranche_locked": true
+    "evidence_submitted_and_tranche_locked": true,
+    "genlayer_verdict_and_credit": {
+      "outcome": "MET",
+      "recipient": "0x883e8977175B6933bd785B424FB74d60C890BDc0",
+      "amount_atto": "4000000000000000",
+      "citations": [
+        {
+          "digest": "db1ab99c5e2742c453b48a77399345f297fdfd190c1033f59fd3ab729c4ae0ec",
+          "excerpt": "Milestone delivery register: 100 kits delivered to 100 distinct recipient IDs.",
+          "line": 2,
+          "role": "SUBMISSION",
+          "source_id": "S1",
+          "url": "https://grantmark-web.vercel.app/evidence/demo-register.txt"
+        },
+        {
+          "digest": "db1ab99c5e2742c453b48a77399345f297fdfd190c1033f59fd3ab729c4ae0ec",
+          "excerpt": "Delivery date: 2026-10-01.",
+          "line": 3,
+          "role": "SUBMISSION",
+          "source_id": "S1",
+          "url": "https://grantmark-web.vercel.app/evidence/demo-register.txt"
+        }
+      ]
+    },
+    "withdrawal_exact_transfer": true
   },
   "fixture_disclosure": "The public delivery register is synthetic and controlled by GRANTMARK. It is not proof of a real grant distribution.",
-  "updated_at": "2026-10-05T07:31:43.659648+00:00",
+  "updated_at": "2026-10-06T17:24:10.002811+00:00",
   "grant_id": "grm-1",
-  "status": "SUBMITTED_AWAITING_REVIEW_DEADLINE",
+  "status": "SETTLED_AND_WITHDRAWN",
   "review_deadline": 1791192617,
-  "reviewer_note": "This acceptance run proves finalized funding, grant creation, submission, and locked tranche. Live adjudication and withdrawal remain unverified until the review deadline."
+  "reviewer_note": "Finalized GenLayer adjudication and an exact native test-GEN withdrawal are independently verifiable from the recorded parent and child transactions. The submitted register is synthetic, not proof of a real grant distribution.",
+  "settlement": {
+    "outcome": "MET",
+    "reason": "The provided evidence snapshot includes a dated delivery register confirming the distribution of 100 kits to 100 distinct recipient IDs, satisfying all material conditions defined in the rubric.",
+    "recipient": "0x883e8977175B6933bd785B424FB74d60C890BDc0",
+    "settled_at": 1791307343,
+    "citations": [
+      {
+        "digest": "db1ab99c5e2742c453b48a77399345f297fdfd190c1033f59fd3ab729c4ae0ec",
+        "excerpt": "Milestone delivery register: 100 kits delivered to 100 distinct recipient IDs.",
+        "line": 2,
+        "role": "SUBMISSION",
+        "source_id": "S1",
+        "url": "https://grantmark-web.vercel.app/evidence/demo-register.txt"
+      },
+      {
+        "digest": "db1ab99c5e2742c453b48a77399345f297fdfd190c1033f59fd3ab729c4ae0ec",
+        "excerpt": "Delivery date: 2026-10-01.",
+        "line": 3,
+        "role": "SUBMISSION",
+        "source_id": "S1",
+        "url": "https://grantmark-web.vercel.app/evidence/demo-register.txt"
+      }
+    ]
+  },
+  "withdraw_balance_before_atto": "1000000000000000000",
+  "withdrawal_proof": {
+    "parent_hash": "0xe55875af6dce4fc5947e86a1be69b0440bcaef00bf213eb7526b5977d60d71ea",
+    "child_hash": "0x7a13225c32a2da7fe5e18f5822031ba2ae83f85cfc7c061844cf32723db130d6",
+    "recipient": "0x883e8977175B6933bd785B424FB74d60C890BDc0",
+    "amount_atto": "4000000000000000",
+    "value_credited": true,
+    "balance_before_atto": "1000000000000000000",
+    "balance_after_atto": "1004000000000000000"
+  }
 }

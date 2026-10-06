@@ -13,7 +13,7 @@ GRANTMARK is a standalone GenLayer StudioNet app for evidence-backed grant miles
 - [`docs/architecture.md`](docs/architecture.md): rules, boundaries, and limitations.
 - [`deployments`](deployments): verifiable deployment and acceptance records.
 - [`scripts/grantmark_acceptance.py`](scripts/grantmark_acceptance.py): resume-safe synthetic StudioNet funding, grant, and evidence run. Test wallet keys stay outside this repository.
-- [`scripts/check_grantmark_release.py`](scripts/check_grantmark_release.py): read-only verifier for deployed source, finalized sample transactions, locked state, and public evidence.
+- [`scripts/check_grantmark_release.py`](scripts/check_grantmark_release.py): read-only verifier for deployed source, finalized sample transactions, cited evidence, settlement, and exact native withdrawal.
 - [`scripts/finish_grantmark_acceptance.py`](scripts/finish_grantmark_acceptance.py): after the real review deadline, request adjudication, withdraw the credited test GEN, and record the native transfer. It never overrides time.
 
 ## Grant lifecycle
@@ -47,4 +47,4 @@ Create `apps/grantmark-web/.env.local` with `NEXT_PUBLIC_GRANTMARK_ADDRESS=<depl
 
 The repository is dedicated to GRANTMARK and contains no other GenLayer applications.
 
-Run `python scripts/check_grantmark_release.py` to check the current public release without any wallet key.
+The [synthetic sample grant](https://grantmark-web.vercel.app/?grant=grm-1) has a finalized `MET` decision and a verified 0.004 StudioNet test-GEN withdrawal to its beneficiary. The [acceptance journal](deployments/grantmark_acceptance.json) records the adjudication, withdrawal, and native child-transfer hashes. This project-controlled evidence demonstrates the app's adjudication path; it does not prove a real delivery. Run `python scripts/check_grantmark_release.py` to check the current public release without any wallet key.
