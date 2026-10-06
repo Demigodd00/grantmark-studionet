@@ -5,8 +5,12 @@ This is the prepared submission copy. Use the [GenLayer Portal](https://portal.g
 ## Project identity
 
 **Project name:** GRANTMARK  
-**Primary tag:** AI & Agents, if offered  
-**Additional tags:** Grants, Source Verification, or Verifiable Inference, choosing from the portal's available taxonomy  
+**Primary tag:** Dispute Resolution
+
+**Additional tag:** AI & Agents, if the form allows multiple tags
+
+**Network:** Studio (Studionet, chain ID 61999)
+
 **Contribution date:** Enter the actual submission date  
 **Logo:** [GRANTMARK logo](https://github.com/Demigodd00/grantmark-studionet/blob/main/docs/grantmark-logo.png) (1024 × 1024 PNG, under 2 MB)
 

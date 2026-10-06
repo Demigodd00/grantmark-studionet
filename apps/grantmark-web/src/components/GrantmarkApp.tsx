@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   CONTRACT_ADDRESS, CONTRACT_READY, EXPLORER_URL, connectWallet, formatGen, getCredit,
   getGrant, getPendingTransaction, getStats, getWalletDeposits, listGrants, parseGen, reconcilePendingTransaction,
@@ -59,6 +59,7 @@ export default function GrantmarkApp() {
   const [pending, setPending] = useState<string | null>(null);
   const [walletDeposits, setWalletDeposits] = useState<WalletDeposit[]>([]);
   const [historyError, setHistoryError] = useState("");
+  const refreshSequence = useRef(0);
 
   useEffect(() => {
     const id = new URLSearchParams(window.location.search).get("grant");
@@ -66,6 +67,7 @@ export default function GrantmarkApp() {
   }, []);
 
   const refresh = useCallback(async (id = selectedId, wallet = session) => {
+    const sequence = ++refreshSequence.current;
     if (!CONTRACT_READY) { setLoading(false); return; }
     setLoadError(false);
     try {
@@ -73,18 +75,23 @@ export default function GrantmarkApp() {
         listGrants(0), getStats(), id ? getGrant(id) : Promise.resolve(null),
         wallet ? getCredit(wallet.address) : Promise.resolve("0"),
       ]);
+      if (sequence !== refreshSequence.current) return;
       setGrants(page.items); setTotal(page.total); setStats(nextStats); setSelected(detail); setCredit(nextCredit);
       if (wallet) {
         setPending(getPendingTransaction(wallet.address)?.hash ?? null);
         void getWalletDeposits(wallet.address).then((items) => {
+          if (sequence !== refreshSequence.current) return;
           setWalletDeposits(items); setHistoryError("");
-        }).catch(() => setHistoryError("Wallet history is temporarily unavailable. Refresh to try again."));
+        }).catch(() => {
+          if (sequence === refreshSequence.current) setHistoryError("Wallet history is temporarily unavailable. Refresh to try again.");
+        });
       } else { setWalletDeposits([]); setHistoryError(""); }
     } catch {
+      if (sequence !== refreshSequence.current) return;
       setGrants([]); setTotal(0); setStats(null); setSelected(null);
       setLoadError(true);
     } finally {
-      setLoading(false);
+      if (sequence === refreshSequence.current) setLoading(false);
     }
   }, [selectedId, session]);
 
@@ -135,7 +142,7 @@ export default function GrantmarkApp() {
   function openGrant(id: string) {
     setSelectedId(id); setSelected(null); setPanel("explore");
     window.history.replaceState(null, "", `?grant=${encodeURIComponent(id)}`);
-    getGrant(id).then(setSelected).catch((error) => setNotice(error instanceof Error ? error.message : "Could not load grant."));
+    if (id === selectedId) void refresh(id, session);
   }
 
   function create() {
